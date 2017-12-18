@@ -6,7 +6,7 @@
 /*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 21:10:01 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/11/15 21:10:02 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/11/26 17:55:42 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	ft_strramen(char **line, t_kek *arrfd, char *end)
 
 int		get_next_line(const int fd, char **line)
 {
-	static t_kek	arr[450000];
+	static t_kek	arr[4500];
 	char			*end;
 
 	end = NULL;
-	if (!line || (!(*line = 0) && (fd < 0 || fd > 44999))
+	if (!line || (!(*line = 0) && (fd < 0 || fd > 4499))
 		|| read(fd, NULL, 0) < 0)
 		return (-1);
 	while (!end)

@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 21:10:13 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/11/26 17:55:41 by omiroshn         ###   ########.fr       */
+/*   Created: 2017/11/25 22:18:13 by omiroshn          #+#    #+#             */
+/*   Updated: 2017/11/26 15:40:13 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 10
-# include "libft/libft.h"
-# include <fcntl.h>
+#include "get_next_line.h"
 
-typedef	struct	s_kek
+int		main(int argc, char **argv)
 {
-	char		content[BUFF_SIZE + 1];
-	size_t		size;
-}				t_kek;
+	int		fd;
+	int		fd2;
+	char	*lol;
 
-int				get_next_line(const int fd, char **line);
-
-#endif
+	fd = open(argv[1], O_RDONLY);
+	fd2 = open(argv[2], O_RDONLY);
+	while ((get_next_line(fd, &lol)) > 0)
+	{
+		printf("%s\n", lol);
+		free(lol);
+		if ((get_next_line(fd2, &lol)) > 0)
+		{
+			printf("%s\n", lol);
+			free(lol);
+		}
+	}
+	return (1);
+}
