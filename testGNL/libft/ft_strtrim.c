@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 18:28:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/11/01 18:28:39 by omiroshn         ###   ########.fr       */
+/*   Created: 2017/11/01 19:21:52 by omiroshn          #+#    #+#             */
+/*   Updated: 2017/11/01 19:21:52 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static int	is_whitespace(char c)
 {
-	char		*str;
-	size_t		i;
-	size_t		j;
-
-	if (!s1 || !s2)
+	if (c == ' ' || c == '\n' || c == '\t')
+		return (1);
+	else
 		return (0);
-	if (!s1)
-		return ((char *)s2);
-	if (!s2)
-		return ((char *)s1);
+}
+
+char		*ft_strtrim(char const *s)
+{
+	unsigned int	i;
+	size_t			len;
+	char			*mem;
+
+	if (!s)
+		return (0);
 	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
-		return (NULL);
-	while (i < ft_strlen(s1))
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (j < ft_strlen(s2))
-		str[i++] = s2[j++];
-	str[i] = '\0';
-	return (str);
+	while (is_whitespace(s[i]))
+		++i;
+	len = ft_strlen(s) - 1;
+	while (len > i && is_whitespace(s[len]))
+		len--;
+	if (len < i)
+		return (mem = ft_strdup(""));
+	return (mem = ft_strsub(s, i, len - (size_t)i + 1));
 }

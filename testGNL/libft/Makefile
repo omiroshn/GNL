@@ -84,7 +84,7 @@ all: $(NAME)
 .NOTPARALLEL: all $(NAME) clean fclean re 
 
 $(NAME): $(OBJ)
-	@echo "\033[37mLinking...\033[0m"
+	@echo "\033[36mLinking...\033[34m"
 	@ar rcs $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo  "\033[32m[ ✔ ] Library\033[1;32m $(NAME) \033[1;0m\033[32mis done! \033[0m"

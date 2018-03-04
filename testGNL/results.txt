@@ -1,0 +1,4 @@
+BUFFSIZE 1:
+./a.out  1612.07s user 8.17s system 94% cpu 28:28.65 total
+BUFFSIZE 1000:
+./a.out  2.13s user 0.10s system 38% cpu 5.803 total

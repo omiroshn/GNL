@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 18:28:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/11/01 18:28:39 by omiroshn         ###   ########.fr       */
+/*   Created: 2017/11/03 12:47:04 by omiroshn          #+#    #+#             */
+/*   Updated: 2017/11/03 12:47:05 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_itoa(int n)
 {
-	char		*str;
-	size_t		i;
-	size_t		j;
+	char	*str;
+	int		temp;
+	int		len;
+	int		minus;
 
-	if (!s1 || !s2)
-		return (0);
-	if (!s1)
-		return ((char *)s2);
-	if (!s2)
-		return ((char *)s1);
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
+	len = ((n <= 0) ? 1 : 0);
+	minus = ((n < 0) ? -1 : 1);
+	temp = n;
+	while (++len && temp)
+		temp /= 10;
+	if (!(str = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
-	while (i < ft_strlen(s1))
+	str[--len] = '\0';
+	*str = '0';
+	temp = n;
+	while (temp)
 	{
-		str[i] = s1[i];
-		i++;
+		str[--len] = '0' + (minus) * (temp % 10);
+		temp /= 10;
 	}
-	while (j < ft_strlen(s2))
-		str[i++] = s2[j++];
-	str[i] = '\0';
+	if (n < 0)
+		*str = '-';
 	return (str);
 }
